@@ -1,0 +1,121 @@
+{
+  "model_name": "SafeDrive Driving Risk Prediction Engine",
+  "version": "1.0.0",
+  "champion_algorithm": "XGBoost Classifier",
+  "features": [
+    "distance_km",
+    "duration_minutes",
+    "speed_mean_kmh",
+    "speed_max_kmh",
+    "speed_std_kmh",
+    "harsh_brake_count",
+    "harsh_accel_count",
+    "sharp_turn_count",
+    "night_driving_ratio",
+    "fatigue_warning_count",
+    "vehicle_category_code"
+  ],
+  "feature_importances": {
+    "night_driving_ratio": 0.239,
+    "speed_max_kmh": 0.2147,
+    "harsh_brake_count": 0.1359,
+    "distance_km": 0.0831,
+    "vehicle_category_code": 0.0773,
+    "harsh_accel_count": 0.0643,
+    "duration_minutes": 0.0592,
+    "sharp_turn_count": 0.0541,
+    "speed_std_kmh": 0.0364,
+    "speed_mean_kmh": 0.0358,
+    "fatigue_warning_count": 0.0
+  },
+  "target_mapping": {
+    "0": "LOW",
+    "1": "MEDIUM",
+    "2": "HIGH"
+  },
+  "comparative_evaluation": [
+    {
+      "model": "Baseline Logistic Regression",
+      "accuracy": 0.7813333333333333,
+      "precision": 0.7783007215007215,
+      "recall": 0.7813333333333333,
+      "f1": 0.7764542997873343,
+      "roc_auc": 0.9214626851462508,
+      "cm": [
+        [
+          173,
+          18,
+          0
+        ],
+        [
+          37,
+          94,
+          7
+        ],
+        [
+          0,
+          20,
+          26
+        ]
+      ]
+    },
+    {
+      "model": "Random Forest Classifier",
+      "accuracy": 0.792,
+      "precision": 0.7960867428471964,
+      "recall": 0.792,
+      "f1": 0.7829120680489103,
+      "roc_auc": 0.9397057400752896,
+      "cm": [
+        [
+          182,
+          9,
+          0
+        ],
+        [
+          45,
+          91,
+          2
+        ],
+        [
+          0,
+          22,
+          24
+        ]
+      ]
+    },
+    {
+      "model": "XGBoost Classifier (Champion)",
+      "accuracy": 0.8533333333333334,
+      "precision": 0.8525162576075792,
+      "recall": 0.8533333333333334,
+      "f1": 0.8492092244181982,
+      "roc_auc": 0.9626305076547222,
+      "cm": [
+        [
+          185,
+          6,
+          0
+        ],
+        [
+          30,
+          103,
+          5
+        ],
+        [
+          0,
+          14,
+          32
+        ]
+      ]
+    }
+  ],
+  "risk_index_transformation": {
+    "formula": "Weighted sum of kinematic penalties + night ratio + fatigue normalized to [0, 100]",
+    "thresholds": {
+      "low": "< 24.0",
+      "medium": "24.0 - 45.0",
+      "high": ">= 45.0"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+
+  /* Deep Cyber Navy Palette matching Reference Design */
+  --bg-app: #060b14;
+  --bg-sidebar: #070d18;
+  --bg-card: rgba(13, 23, 42, 0.75);
+  --bg-card-hover: rgba(19, 34, 60, 0.85);
+  --bg-input: rgba(15, 23, 42, 0.8);
+  --bg-glass-active: rgba(6, 182, 212, 0.12);
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-card: rgba(56, 189, 248, 0.12);
+  --border-cyan-glow: rgba(6, 182, 212, 0.5);
+  --border-emerald-glow: rgba(16, 185, 129, 0.5);
+  --border-rose-glow: rgba(244, 63, 94, 0.5);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-cyan: #38bdf8;
+  --text-emerald: #34d399;
+  --text-rose: #f87171;
+  --text-amber: #fbbf24;
+
+  --neon-cyan: #00f0ff;
+  --neon-blue: #3b82f6;
+  --neon-emerald: #10b981;
+  --neon-rose: #ef4444;
+  --neon-amber: #f59e0b;
+
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.35);
+  --glow-cyan-inset: inset 0 0 12px rgba(6, 182, 212, 0.2);
+  --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.35);
+  --glow-rose: 0 0 20px rgba(239, 68, 68, 0.35);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(59, 130, 246, 0.05) 0%, transparent 45%);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Card Style */
+.cyber-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.cyber-card-glow-cyan {
+  border: 1px solid var(--neon-cyan);
+  box-shadow: var(--glow-cyan), var(--glow-cyan-inset);
+}
+
+/* Pill Tabs */
+.cyber-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cyber-tab-pill:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.cyber-tab-pill.active {
+  color: #ffffff;
+  background: rgba(6, 182, 212, 0.18);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.4), inset 0 0 8px rgba(6, 182, 212, 0.2);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.4);
+}
+
+/* Pulse Live Indicator */
+.pulse-green {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  position: relative;
+  display: inline-block;
+}
+
+.pulse-green::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse-ring 2s infinite ease-out;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Circular Progress Arc Styles */
+.circular-progress-wrap {
+  position: relative;
+  width: 54px;
+  height: 54px;
+}
+
+.circular-progress-wrap svg {
+  transform: rotate(-90deg);
+}

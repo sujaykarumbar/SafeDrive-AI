@@ -1,0 +1,26 @@
+{
+  "name": "safedrive-ai-workspaces",
+  "version": "1.0.0",
+  "description": "SafeDrive AI - Driver Safety, Risk Prediction & Road Hazard Intelligence",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix web run dev",
+    "dev:caretaker": "npm --prefix web-caretaker run dev",
+    "dev:road-dept": "npm --prefix web-road-department run dev",
+    "start:caretaker": "npm --prefix web-caretaker run dev",
+    "start:road-dept": "npm --prefix web-road-department run dev",
+    "build:caretaker": "npm --prefix web-caretaker run build",
+    "build:road-dept": "npm --prefix web-road-department run build",
+    "build:all": "npm --prefix web-caretaker run build && npm --prefix web-road-department run build && npm --prefix web run build"
+  },
+  "keywords": [
+    "safedrive",
+    "driver-safety",
+    "road-hazard",
+    "fastapi",
+    "react"
+  ],
+  "author": "SafeDrive AI Team",
+  "license": "MIT"
+}
+
